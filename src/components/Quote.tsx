@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import config from "../config";
 import PhaseDisplay from "./Phase";
+import Footer from "./Footer";
 import BukowskiQuotes from "../data/Bukowski";
-
 
 enum Phase {
   GetQuote = 1,
@@ -16,7 +16,6 @@ async function sleep(msec: number) {
 }
 
 const Quote = () => {
-
   const [quote, setQuote]: [string, Function] = useState(BukowskiQuotes[0]);
   const [quoteVisible, setQuoteVisible]: [boolean, Function] = useState(true);
   const quoteVisibleRef: React.MutableRefObject<boolean> = useRef(false);
@@ -26,6 +25,11 @@ const Quote = () => {
   const showQuote = (show: boolean) => {
     quoteVisibleRef.current = show;
     setQuoteVisible(quoteVisibleRef.current);
+  };
+
+  const isDebug = (): boolean => {
+    let searchParams = new URLSearchParams(window.location.search);
+    return searchParams.has("Debug");
   };
 
   useEffect(() => {
@@ -66,8 +70,8 @@ const Quote = () => {
           <pre>{quote}</pre>
         </div>
       </div>
-      <PhaseDisplay phase={phase}/>
-     </>
+      {isDebug() ? <PhaseDisplay phase={phase} /> : <Footer />}
+    </>
   );
 };
 

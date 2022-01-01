@@ -72,7 +72,9 @@ const Quote = () => {
           <pre>{quote}</pre>
         </div>
       </div>
-      <div>&nbsp;</div>
+      <div className="footer p-4">
+        <a href="https://codebuckets.com">codebuckets.com</a>
+      </div>
     </div>
   );
 };

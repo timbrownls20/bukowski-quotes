@@ -5,7 +5,7 @@ import Quote from "./components/Quote";
 
 function App() {
   return (
-    <div className="App">
+    <div className="App container-fluid">
       <Quote />
     </div>
   );

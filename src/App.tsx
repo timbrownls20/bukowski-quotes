@@ -3,7 +3,6 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Quote from "./components/Quote";
 import Header from "./components/Header";
-import Footer from "./components/Footer";
 import Background from "./assets/images/background.jpg";
 
 function App() {
@@ -19,7 +18,6 @@ function App() {
       >
         <Header />
         <Quote />
-        <Footer />
       </div>
     </div>
   );

@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import config from "../config";
+import PhaseDisplay from "./Phase";
 import BukowskiQuotes from "../data/Bukowski";
+
 
 enum Phase {
   GetQuote = 1,
@@ -19,6 +21,7 @@ const Quote = () => {
   const [quoteVisible, setQuoteVisible]: [boolean, Function] = useState(true);
   const quoteVisibleRef: React.MutableRefObject<boolean> = useRef(false);
   const quoteNumberRef: React.MutableRefObject<number> = useRef(0);
+  const [phase, setPhase]: [number, Function] = useState(Phase.QuoteVisible);
 
   const showQuote = (show: boolean) => {
     quoteVisibleRef.current = show;
@@ -39,10 +42,11 @@ const Quote = () => {
       callback(BukowskiQuotes[quoteNumberRef.current]);
     };
 
-    let count: number = Phase.QuoteVisible;
+    let count: number = phase;
 
     setInterval(() => {
       let phase = (count % 10) + 1;
+      setPhase(phase);
 
       if (phase === Phase.GetQuote) {
         getQuote((quote) => setQuote(quote));
@@ -56,12 +60,14 @@ const Quote = () => {
   }, []);
 
   return (
+    <>
       <div className={"quote" + (quoteVisible ? "" : " hidden")}>
         <div className={"fadein-text" + (quoteVisible ? "" : " hidden")}>
           <pre>{quote}</pre>
         </div>
       </div>
-     
+      <PhaseDisplay phase={phase}/>
+     </>
   );
 };
 

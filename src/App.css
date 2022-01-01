@@ -67,6 +67,11 @@ pre
   color: grey;
 }
 
+.phase {
+  color:white;
+  font-size: larger;
+}
+
 @media (max-width: 319px) { 
   .quote 
   {

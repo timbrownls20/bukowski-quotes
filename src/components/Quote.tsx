@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from "react";
 import config from "../config";
 import BukowskiQuotes from "../data/Bukowski";
 import Background from "../assets/images/background.jpg";
+import Header from "./Header";
+import Footer from "./Footer";
 
 enum Phase {
   GetQuote = 1,
@@ -64,17 +66,13 @@ const Quote = () => {
       className="d-flex flex-column justify-content-between align-items-end quote-background"
       style={style}
     >
-      <div className="heading d-flex justify-content-end">
-        <small>Bukowski</small>
-      </div>
+      <Header />
       <div className={"quote" + (quoteVisible ? "" : " hidden")}>
         <div className={"fadein-text" + (quoteVisible ? "" : " hidden")}>
           <pre>{quote}</pre>
         </div>
       </div>
-      <div className="footer p-4">
-        <a href="https://codebuckets.com">codebuckets.com</a>
-      </div>
+      <Footer />
     </div>
   );
 };

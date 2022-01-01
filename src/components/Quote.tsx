@@ -1,9 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import config from "../config";
 import BukowskiQuotes from "../data/Bukowski";
-import Background from "../assets/images/background.jpg";
-import Header from "./Header";
-import Footer from "./Footer";
 
 enum Phase {
   GetQuote = 1,
@@ -17,9 +14,6 @@ async function sleep(msec: number) {
 }
 
 const Quote = () => {
-  const style: React.CSSProperties = {
-    backgroundImage: `url(${Background})`,
-  };
 
   const [quote, setQuote]: [string, Function] = useState(BukowskiQuotes[0]);
   const [quoteVisible, setQuoteVisible]: [boolean, Function] = useState(true);
@@ -62,18 +56,12 @@ const Quote = () => {
   }, []);
 
   return (
-    <div
-      className="d-flex flex-column justify-content-between align-items-end quote-background"
-      style={style}
-    >
-      <Header />
       <div className={"quote" + (quoteVisible ? "" : " hidden")}>
         <div className={"fadein-text" + (quoteVisible ? "" : " hidden")}>
           <pre>{quote}</pre>
         </div>
       </div>
-      <Footer />
-    </div>
+     
   );
 };
 
